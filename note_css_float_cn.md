@@ -23,7 +23,7 @@ typora-root-url: ./
   </div>
   ```
 
-  效果图:
+  效果图:   
   ![css_float_1](/img/css_float_1.png)
 
   ​
