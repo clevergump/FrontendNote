@@ -1,3 +1,5 @@
+[TOC]
+
 # String
 
 ---
@@ -55,7 +57,7 @@
    * that if the string contains the searchString 'a', the containing substring must begin 
    * from a character in the left part substring('can'), so the containing substring that 
    * contains the searchString 'a' has to be the character 'a' in string 'can' whose index 
-   * is 1, not 'a' at other indexes. So the resule is 1 not 3.
+   * is 1, not 'a' at other indexes. So the result is 1 not 3.
    */
   'canal'.lastIndexOf('a', 2);   // 1 not 3
   ```
