@@ -78,7 +78,7 @@
      | string  | fromIndex                         | left part |
      | ------- | --------------------------------- | --------- |
      | 'hello' | -3 (the same effect with 0)       | 'h'       |
-     | 'hello' | 1                                 | ''he      |
+     | 'hello' | 1                                 | 'he'      |
      | 'hello' | 7 (the same effect with length-1) | 'hello'   |
 
   2. Check if the first character of the *searchValue* is within the left part. If not, then directly return -1. Otherwise, continue to check if the beginning part of the searchValue is within the left part. If not, returns -1. Otherwise, continue to check if the remaining part of the searchValue is just after the matched strings in the left part and within the original string. If yes, then it contains and returns the index of the first character of the containing substring of the original string. Examples are in the following table.
