@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- We must place ALL the dependencies scripts' tags BEFORE the calling script tags, otherwise
+         it will not show on the webpage.
+         1. ALL: that means all the scripts, like the common.js below
+         2. BEFORE: that means the sequence of the browser loading the page is serial
+    -->
+    <script src="c5_String.js"></script>
+    <script src="../../common/common.js"></script>
+    <script>
+        lengthDemo();
+        containsDemo("Hello World", "w");
+        containsDemo("Hello World", "Hello");
+        lastIndexOfDemo();
+    </script>
+    <!-- We should not place the dependencies scripts after the calling scripts, like below. -->
+    <!--<script src="./c5_String.js"></script>-->
+</body>
+</html>
