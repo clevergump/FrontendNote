@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline;
+    margin: 20px 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: blue;
+}
+a:visited {
+    color: dimgray;
+}
+a:hover{
+    color: red;
+}
+
+#btn_change_flag{
+    margin: 20px 10px 10px 10px;
+}
+
+#img_flag1, #img_flag2, #desc_flag1, #div_flag2 {
+    margin: 10px;
+}
