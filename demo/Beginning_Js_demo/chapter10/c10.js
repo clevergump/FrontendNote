@@ -20,6 +20,7 @@ window.onload = function () {
         // 禁止该链接的默认跳转行为
         event.preventDefault();
     });
+    addUnderlineDemo();
 }
 
 function getRandomImgSrc() {
@@ -46,4 +47,30 @@ function changeFlag2(event) {
         newImgSrc = getRandomImgSrc();
     }
     imgFlag2Elem.src = "." + newImgSrc;
+}
+
+/**
+ * 为段落添加如下动作事件：当鼠标移入段落时, 将该段落的样式设置为.underline； 当鼠标移开段落时, 又将该段落
+ * 的样式恢复为先前的默认样式. 当鼠标点击该段落时, 弹框显示鼠标点击位置的x,y坐标.
+ */
+function addUnderlineDemo() {
+    document.addEventListener("mouseover", handleEvent);
+    document.addEventListener("mouseout", handleEvent);
+    document.addEventListener("click", handleEvent);
+}
+
+function handleEvent(event) {
+    var targetElem = event.target;
+    var eventType = event.type;
+    // Attention: tagName must be upper case.
+    if (targetElem.tagName != 'P') {
+        return;
+    }
+    if (eventType == "mouseover") {
+        targetElem.className = "underline";
+    } else if (eventType == "mouseout") {
+        targetElem.className = "";
+    } else if (eventType == "click") {
+        alert("You click the point: " + event.clientX + ", " + event.clientY);
+    }
 }
