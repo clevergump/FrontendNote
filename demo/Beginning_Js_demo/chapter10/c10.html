@@ -24,7 +24,21 @@
         <img id="img_flag2" src="img/Brazil.png" alt="flag"/>
     </div>
     <p id="p1">This is paragraph 1.</p>
+    <hr/>
+    <div draggable="true" class="box red"></div>
+    <div id="dropZone" class="drop-zone">Drop Zone!</div>
+    <div id="dropStatus"></div>
+    <hr/>
+    <div data-drop-target="true">
+        <div id="box1" draggable="true" class="box navy"></div>
+        <div id="box2" draggable="true" class="box red"></div>
+    </div>
+    <div data-drop-target="true"></div>
     <script src="../common/common.js"></script>
     <script src="c10.js"></script>
+    <script>
+        handleDragDemo1();
+        handleDragDemo2();
+    </script>
 </body>
 </html>

@@ -49,3 +49,34 @@ a:hover{
     text-decoration: line-through;
     background-color: aquamarine;
 }
+
+.drop-zone {
+    width: 300px;
+    padding: 20px;
+    border: 2px dashed #000;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+}
+
+.red {
+    background-color: red;
+}
+
+[data-drop-target] {
+    height: 400px;
+    width: 200px;
+    margin: 2px;
+    background-color: gainsboro;
+    float: left;
+}
+
+.drag-enter {
+    border: 2px dashed #000;
+}
+
+.navy {
+    background-color: navy;
+}

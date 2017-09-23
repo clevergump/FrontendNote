@@ -21,6 +21,7 @@ window.onload = function () {
         event.preventDefault();
     });
     addUnderlineDemo();
+    // handleDragDemo1();
 }
 
 function getRandomImgSrc() {
@@ -72,5 +73,68 @@ function handleEvent(event) {
         targetElem.className = "";
     } else if (eventType == "click") {
         alert("You click the point: " + event.clientX + ", " + event.clientY);
+    }
+}
+
+function handleDragDemo1() {
+    function dragStartHandler(e) {
+        e.dataTransfer.setData("text", "Drag and Drop!");
+    }
+
+    function dragDropHandler(e) {
+        e.preventDefault();
+        if (e.type == "dragover") {
+            dropStatus.innerHTML = "You're dragging over the drop zone";
+        } else {
+            dropStatus.innerHTML = e.dataTransfer.getData("text");
+        }
+    }
+
+    var dragBox = document.querySelector("[draggable]");
+    var dropZone = document.getElementById("dropZone");
+    var dropStatus = document.getElementById("dropStatus");
+    dragBox.addEventListener("dragstart", dragStartHandler);
+    dropZone.addEventListener("dragover", dragDropHandler);
+    dropZone.addEventListener("drop", dragDropHandler);
+}
+
+function handleDragDemo2() {
+    function handleDragStart(e) {
+        e.dataTransfer.setData("text", this.id);
+    }
+
+    function handleDragEnterLeave(e) {
+        if (e.type == "dragenter") {
+            this.className = "drag-enter";
+        } else {
+            this.className = "";
+        }
+    }
+
+    function handleOverDrop(e) {
+        e.preventDefault();
+        if (e.type != "drop") {
+            return;
+        }
+        var draggedId = e.dataTransfer.getData("text");
+        var draggedEl = document.getElementById(draggedId);
+        if (draggedEl.parentNode == this) {
+            return;
+        }
+        draggedEl.parentNode.removeChild(draggedEl);
+        this.appendChild(draggedEl);
+        this.className = "";
+    }
+
+    var draggable = document.querySelectorAll("[draggable]");
+    var targets = document.querySelectorAll("[data-drop-target]");
+    for (var i = 0; i < draggable.length; i++) {
+        draggable[i].addEventListener("dragstart", handleDragStart);
+    }
+    for (var i = 0; i < targets.length; i++) {
+        targets[i].addEventListener("dragover", handleOverDrop);
+        targets[i].addEventListener("drop", handleOverDrop);
+        targets[i].addEventListener("dragenter", handleDragEnterLeave);
+        targets[i].addEventListener("dragleave", handleDragEnterLeave);
     }
 }
