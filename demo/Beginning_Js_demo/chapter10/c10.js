@@ -21,7 +21,8 @@ window.onload = function () {
         event.preventDefault();
     });
     addUnderlineDemo();
-    // handleDragDemo1();
+    handleDragDemo1();
+    handleDragDemo2();
 }
 
 function getRandomImgSrc() {
