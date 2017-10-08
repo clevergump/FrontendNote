@@ -16,27 +16,14 @@ function regexpBasicDemo() {
     var newStr6 = originalStr.replace(regexp6, replacement0);
 
     docwrite("<table cellpadding='10' cellspacing='0' border='1' align='top left'>");
-    createTr("Original String", originalStr);
-    createTr("After replacing '" + regexp1 + "' with '" + replacement0 + "'", newStr1); // "Paul, Paula, Pauline, HELLO, Paul, Jeanpaul, JeanPaul"
-    createTr("After replacing '" + regexp2 + "' with '" + replacement0 + "'", newStr2); // "Paul, Paula, Pauline, HELLO, Paul, JeanHELLO, JeanPaul"
-    createTr("After replacing '" + regexp3 + "' with '" + replacement0 + "'", newStr3); // "HELLO, HELLOa, HELLOine, HELLO, HELLO, JeanHELLO, JeanHELLO"
-    createTr("After replacing '" + regexp4 + "' with '" + replacement0 + "'", newStr4); // "HELLO Paula, Pauline, HELLO HELLO JeanHELLO JeanPaul"
-    createTr("After replacing '" + regexp5 + "' with '" + replacement0 + "'", newStr5); // "HELLO, Paula, Pauline, HELLO, HELLO, JeanHELLO, JeanHELLO"
-    createTr("After replacing '" + regexp6 + "' with '" + replacement0 + "'", newStr6); // "HELLO, Paula, Pauline, HELLO, HELLO, Jeanpaul, JeanPaul"
+    createTdRow(["Original String", originalStr]);
+    createTdRow(["After replacing '" + regexp1 + "' with '" + replacement0 + "'", newStr1]); // "Paul, Paula, Pauline, HELLO, Paul, Jeanpaul, JeanPaul"
+    createTdRow(["After replacing '" + regexp2 + "' with '" + replacement0 + "'", newStr2]); // "Paul, Paula, Pauline, HELLO, Paul, JeanHELLO, JeanPaul"
+    createTdRow(["After replacing '" + regexp3 + "' with '" + replacement0 + "'", newStr3]); // "HELLO, HELLOa, HELLOine, HELLO, HELLO, JeanHELLO, JeanHELLO"
+    createTdRow(["After replacing '" + regexp4 + "' with '" + replacement0 + "'", newStr4]); // "HELLO Paula, Pauline, HELLO HELLO JeanHELLO JeanPaul"
+    createTdRow(["After replacing '" + regexp5 + "' with '" + replacement0 + "'", newStr5]); // "HELLO, Paula, Pauline, HELLO, HELLO, JeanHELLO, JeanHELLO"
+    createTdRow(["After replacing '" + regexp6 + "' with '" + replacement0 + "'", newStr6]); // "HELLO, Paula, Pauline, HELLO, HELLO, Jeanpaul, JeanPaul"
     docwrite("</table>");
-
-    function createTd(tdContent) {
-        document.write("<td>");
-        document.write(tdContent);
-        document.write("</td>");
-    }
-
-    function createTr(trTitle, trContent) {
-        docwrite("<tr>");
-        createTd(trTitle);
-        createTd(trContent);
-        docwrite("</tr>");
-    }
 }
 
 /**

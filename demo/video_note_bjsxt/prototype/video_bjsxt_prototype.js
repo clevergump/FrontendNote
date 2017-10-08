@@ -1,8 +1,10 @@
 window.onload = function () {
-    prototypeDemo();
+    prototypeDemo1();
+    prototypeDemo2();
 }
 
-function prototypeDemo() {
+function prototypeDemo1() {
+    docwrite("-------------- prototypeDemo1 -------------");
     // relationship of constructor, prototype and instance
     function Person() {
 
@@ -18,6 +20,11 @@ function prototypeDemo() {
 
     docwrite("Person.prototype = " + Person.prototype);
     docwrite("Person.prototype.constructor = " + Person.prototype.constructor);
+    docwrite("p.constructor = " + p.constructor);
+    docwrite("Person.prototype.constructor == Person " + getColoredContent(Person.prototype.constructor == Person, "red"));
+    docwrite("p.constructor == Person " + getColoredContent(p.constructor == Person, "red"));
+    docwrite("");
+
     docwrite("Person.prototype.isPrototypeOf(p) = " + Person.prototype.isPrototypeOf(p));
     docwrite("Person.prototype.isPrototypeOf(Person) = " + Person.prototype.isPrototypeOf(Person));
     var result = (Object.getPrototypeOf(p) == Person.prototype);
@@ -33,6 +40,7 @@ function prototypeDemo() {
     docwrite("hasPrototypeProperty(p, 'name') = " + hasPrototypeProperty(p, "name"));
     docwrite('hasPrototypeProperty(p, "age") = ' + hasPrototypeProperty(p, "age"));
     docwrite('hasPrototypeProperty(p, "sayName") = ' + hasPrototypeProperty(p, "sayName"));
+    docwrite("<hr/>");
 }
 
 /**
@@ -55,4 +63,47 @@ function getColoredContent(content, colorStr) {
  */
 function hasPrototypeProperty(obj, propertyName) {
     return (propertyName in obj) && !Object.hasOwnProperty(propertyName);
+}
+
+function prototypeDemo2() {
+    docwrite("-------------- prototypeDemo2 -------------");
+    function Person() {
+
+    }
+
+    Person.prototype = {
+        name : "Jack",
+        age : 30,
+        sayName : function () {
+            docwrite("called from function sayName, name is " + this.name);
+        }
+    };
+
+    Object.defineProperty(Person.prototype, "constructor", {
+        enumerable : false,
+        value : Person
+    });
+
+    var p = new Person();
+    // job is a private enumerable(by default) property of the instance p
+    p.job = "Teacher";
+    // nationality is a private un-enumerable property of the instance p
+    Object.defineProperty(p, "nationality", {
+        enumerable : false,
+        value : "China"
+    });
+
+    docwrite("p.name = " + p.name);
+    docwrite("p.age = " + p.age);
+    p.sayName();
+    docwrite("");
+    /********************************************************/
+
+    docwrite("<table cellpadding='10' cellspacing='0' border='1' align='top left'>");
+    createThRow(["", "instance p", "Person.prototype"]);
+    createTdRow(["keys()", Object.keys(p), Object.keys(Person.prototype)]);
+    createTdRow(["for-in loop", getForInArray(p), getForInArray(Person.prototype)]);
+    createTdRow(["getOwnPropertyNames()", Object.getOwnPropertyNames(p), Object.getOwnPropertyNames(Person.prototype)]);
+    docwrite("</table>");
+    docwrite("<hr/>");
 }
