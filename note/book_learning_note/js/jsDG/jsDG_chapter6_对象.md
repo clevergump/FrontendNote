@@ -14,7 +14,7 @@
 
   例如：
 
-  ```
+  ```javascript
   var o1 = Object.create({x:1, y:2}); // 参数{x:1, y:2}就是对象o1的原型对象，o1继承了属性x和y
   ```
 
@@ -76,7 +76,7 @@ js在一个对象不为null的前提下获取该对象的某个属性的写法�
 
 例如：要获取一本书的标题长度，可以有以下两种等效的写法 (&& 是短路与)：
 
-```
+```js
 var len = undefined;
 if(book && book.title){
   len = book.title.length;
@@ -93,7 +93,7 @@ var len = book && book.title && book.title.length;
 
 ## 6.3 删除属性
 
-在 [“4.13.3  delete 运算符“](/jsDG_chapter4_表达式和运算符.md) 介绍过，delete运算符可以删除对象的属性或数组的元素。
+在 [“4.13.3  delete 运算符“](./jsDG_chapter4_表达式和运算符.md) 介绍过，delete运算符可以删除对象的属性或数组的元素。
 
 使用 delete 表达式删除对象的属性时，注意防止产生内存泄露，例如：
 
@@ -102,7 +102,11 @@ var a = {
   p: {x:1}  // 这里的对象 {x:1} 我们简称作对象obj
 };
 var b = a.p; // 此时 b == obj, b也引用着对象obj，相当于对象obj有两个引用（a.p 和 b）
-delete a.p; // 这句代码的本意是想让对象obj失去来自a.p的引用从而释放掉该对象所占用的内存，但是由于它还存在另一个引用b, 从而导致对象obj在内存中占用的空间并未得到释放，而我们执行这句delete代码的本意也是不想再继续使用该对象obj了，但是实际上经过delete后该对象依然没有被释放，就相当于被泄露到内存中了。所以要想避免这种问题，就还需要把 b对它的引用给删除，可以再执行 delete b.x即可，但是这种解决办法不够直观，所以一个好的习惯是，先删除a.p.x(即：先删除a.p自己的所有属性),然后再去删除 a.p 本身。
+delete a.p; // 这句代码的本意是想让对象obj失去来自a.p的引用从而释放掉该对象所占用的内存，但是由于它还
+// 存在另一个引用b, 从而导致对象obj在内存中占用的空间并未得到释放，而我们执行这句delete代码的本意也是
+// 不想再继续使用该对象obj了，但是实际上经过delete后该对象依然没有被释放，就相当于被泄露到内存中了。
+// 所以要想避免这种问题，就还需要把 b对它的引用给删除，可以再执行 delete b.x即可，但是这种解决办法不够
+// 直观，所以一个好的习惯是，先删除a.p.x(即：先删除a.p自己的所有属性),然后再去删除 a.p 本身。
 ```
 
 上述代码的注释详细阐述了对象obj 发生内存泄露的过程。下面的代码是避免obj 发生内存泄露的正确写法：
@@ -112,9 +116,28 @@ var a = {
   p: {x:1}
 };
 var b = a.p; // 即：b == {x:1}， b.x == 1
-delete a.p.x; // 此时 a.p.x == b.x == undefined，也就是遍历 a.p 的每一个属性并依次删除，当内部属性较多时，可以使用for循环遍历并删除
+delete a.p.x; // 此时 a.p.x == b.x == undefined，也就是遍历 a.p 的每一个属性并依次删除，当内部属性
+// 较多时，可以使用for循环遍历并删除
 delete a.p; // 当删除了 a.p 的所有属性后，再去删除 a.p本身，这样就能避免内部属性所引用的对象的内存泄露
 ```
+
+delete只有删除自有属性时才会成功，删除继承属性将不起任何作用。
+
+删除自有属性后，继承自该对象的对象在访问该属性时将也会受到影响。
+
+继承属性无法删除，只能在定义该属性的那个原型对象中才能有效删除，删除后会同时影响到该对象的所有子对象。
+
+delete 表达式的值为布尔类型，当删除成功或者删除不起任何效果（例如：删除一个不存在的属性，或者删除一个继承的属性，或者删除的不是一个属性访问表达式例如删除一个常量）时，都会返回 true。
+
+```javascript
+o = {x:1}; // o has own property x and inherits property toString
+delete o.x; // Delete x, and return true
+delete o.x; // Do nothing (x doesn't exist), and return true
+delete o.toString; // Do nothing (toString isn't an own property), return true
+delete 1; // Nonsense, but evaluates to true
+```
+
+
 
 
 

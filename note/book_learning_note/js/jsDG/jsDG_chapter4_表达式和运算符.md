@@ -50,7 +50,7 @@ delete 的结果：
 - delete 数组元素：delete 数组元素，相当于将该数组中该元素的数值设置为 undefined， 数组长度不变。
 
 
-其他介绍见 [“6.3 删除属性”](jsDG_chapter6_对象.md).
+其他介绍见 [“6.3 删除属性”](./jsDG_chapter6_对象.md).
 
 
 
