@@ -16,15 +16,15 @@ js中所有类型的值不是真值就是假值，即：任意类型的数都能
 
 返回值：始终是一个字符串，但根据变量类型的不同，返回的字符串内容不同
 
-| x                            | typeof x                                                     |
-| ---------------------------- | ------------------------------------------------------------ |
-| undefined                    | "undefined"                                                  |
-| null, 任意内置对象（非函数） | “object”                                                     |
-| true, false                  | "boolean"                                                    |
-| 任意数字，NaN                | "number"                                                     |
-| 任意字符串                   | “string”                                                     |
-| 任意函数                     | “function”                                                   |
-| 任意宿主对象                 | 由编译器各自实现的字符串，但不是 "undefined"、"boolean"、"number"或 “string” |
+| x                 | typeof x                                 |
+| ----------------- | ---------------------------------------- |
+| undefined         | "undefined"                              |
+| null, 任意内置对象（非函数） | “object”                                 |
+| true, false       | "boolean"                                |
+| 任意数字，NaN          | "number"                                 |
+| 任意字符串             | “string”                                 |
+| 任意函数              | “function”                               |
+| 任意宿主对象            | 由编译器各自实现的字符串，但不是 "undefined"、"boolean"、"number"或 “string” |
 
 **注意：虽然函数也属于一种对象，但是对函数使用 typeof 运算的结果不是 "object"，而是 "function".**
 
@@ -49,6 +49,8 @@ delete 的结果：
 - delete 对象属性：delete 对象属性后，该对象中该属性将不再存在（即：对该属性名在该对象上使用in运算会返回 false），获取该对象的该属性的值将返回 undefined（注意：返回 undefined有两种可能的情况：要么是该对象中不存在该属性，要么是该对象中存在该属性但该属性的数值刚好为 undefined）
 - delete 数组元素：delete 数组元素，相当于将该数组中该元素的数值设置为 undefined， 数组长度不变。
 
+
+其他介绍见 [“6.3 删除属性”](jsDG_chapter6_对象.md).
 
 
 
