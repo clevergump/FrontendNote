@@ -95,6 +95,8 @@ var len = book && book.title && book.title.length;
 
 在 [“4.13.3  delete 运算符“](./jsDG_chapter4_表达式和运算符.md) 介绍过，delete运算符可以删除对象的属性或数组的元素。
 
+**在英文原版中，有两个单词都可以翻译为汉语的"属性"： property, attribute，而delete 删除的属性指的是 property.**
+
 使用 delete 表达式删除对象的属性时，注意防止产生内存泄露，例如：
 
 ```js
